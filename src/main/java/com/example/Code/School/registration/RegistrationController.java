@@ -1,6 +1,7 @@
 package com.example.Code.School.registration;
 
 import com.example.Code.School.model.UserCredentials;
+import com.example.Code.School.service.ProgressService;
 import com.example.Code.School.service.UserCredentialsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,15 @@ import java.util.List;
 public class RegistrationController {
 
     private final RegistrationService registrationService;
+    private final ProgressService progressService;
     private final UserCredentialsService userCredentialsService;
 
     @PostMapping
     public String register(@RequestBody RegistrationRequest request){
+        UserCredentials newUser = new UserCredentials();
+        newUser.setUsername(request.getUsername());
+        newUser.setPassword(request.getPassword());
+        newUser.setEmail(request.getEmail());
         return registrationService.register(request);
     }
 

@@ -26,11 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/registration/**", "/User/**", "/Classroom/**", "/Subject/**", "/CourseReg/**", "/login/**")
+                .antMatchers("/api/v1/registration/**", "/User/**", "/login/**", "/progress/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin().defaultSuccessUrl("https://www.overleaf.com/project/5ecbb6df10cd840001b13239", true);
+                .formLogin().loginPage("http://localhost:4200/login").usernameParameter("email").permitAll()
+                .defaultSuccessUrl("http://localhost:4200/main-menu", true);
 
     }
 

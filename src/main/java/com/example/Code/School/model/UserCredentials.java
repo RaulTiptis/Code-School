@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,18 +30,30 @@ public class UserCredentials implements UserDetails {
     private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+    @ManyToOne
+    @Nullable
+    private Progress progress;
 
-    public UserCredentials(String email, String password, UserRole userRole, String username) {
+    public UserCredentials(String email, String password, UserRole userRole, String username, Progress progress) {
         this.email = email;
         this.password = password;
         this.userRole = userRole;
         this.username = username;
+        this.progress = progress;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
         return Collections.singletonList(authority);
+    }
+
+    public Progress getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Progress progress){
+        this.progress = progress;
     }
 
     @Override

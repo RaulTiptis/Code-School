@@ -31,7 +31,8 @@ public class UserCredentials implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
     @ManyToOne
-    @Nullable
+    @JoinColumn(nullable = false,
+    name = "progress_id")
     private Progress progress;
 
     public UserCredentials(String email, String password, UserRole userRole, String username, Progress progress) {

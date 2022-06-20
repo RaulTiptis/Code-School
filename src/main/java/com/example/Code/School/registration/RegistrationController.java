@@ -21,10 +21,6 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@RequestBody RegistrationRequest request){
-        UserCredentials newUser = new UserCredentials();
-        newUser.setUsername(request.getUsername());
-        newUser.setPassword(request.getPassword());
-        newUser.setEmail(request.getEmail());
         return registrationService.register(request);
     }
 

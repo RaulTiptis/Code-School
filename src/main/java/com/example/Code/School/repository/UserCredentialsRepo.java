@@ -20,3 +20,4 @@ public interface UserCredentialsRepo extends JpaRepository<UserCredentials, Inte
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableUserCredentials(String email);
 }
+

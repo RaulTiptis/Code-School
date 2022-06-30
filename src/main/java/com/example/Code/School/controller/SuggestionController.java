@@ -1,6 +1,5 @@
 package com.example.Code.School.controller;
 
-import com.example.Code.School.model.Progress;
 import com.example.Code.School.model.Suggestion;
 import com.example.Code.School.service.SuggestionService;
 import org.springframework.http.HttpStatus;

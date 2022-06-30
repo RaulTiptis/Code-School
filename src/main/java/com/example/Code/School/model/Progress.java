@@ -2,6 +2,10 @@ package com.example.Code.School.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Progress implements Serializable {
@@ -9,108 +13,25 @@ public class Progress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private boolean javaLevelOne = false;
-    private boolean javaLevelTwo = false;
-    private boolean javaLevelThree = false;
-    private boolean pythonLevelOne = false;
-    private boolean pythonLevelTwo = false;
-    private boolean pythonLevelThree = false;
-    private boolean cLevelOne = false;
-    private boolean cLevelTwo = false;
-    private boolean cLevelThree = false;
+    @ElementCollection
+    private List<Boolean> levels = new ArrayList<Boolean>(Arrays.asList(new Boolean[150]));
 
     public Integer getId(){
         return id;
     }
 
-    public boolean getJavaLevelOne(){
-        return javaLevelOne;
+    public List<Boolean> getLevels() {return levels;}
+
+    public void setLevels(List<Boolean> levels) {this.levels = levels;}
+
+    public Progress(){
+        Collections.fill(levels, false);
     }
 
-    public void setJavaLevelOne(boolean javaLevelOne){
-        this.javaLevelOne = javaLevelOne;
-    }
-
-    public boolean getJavaLevelTwo(){
-        return javaLevelTwo;
-    }
-
-    public void setJavaLevelTwo(boolean javaLevelTwo){
-        this.javaLevelTwo = javaLevelTwo;
-    }
-
-    public boolean getJavaLevelThree(){
-        return javaLevelThree;
-    }
-
-    public void setJavaLevelThree(boolean javaLevelThree){
-        this.javaLevelThree = javaLevelThree;
-    }
-
-    public boolean getPythonLevelOne(){
-        return pythonLevelOne;
-    }
-
-    public void setPythonLevelOne(boolean pythonLevelOne){
-        this.pythonLevelOne = pythonLevelOne;
-    }
-
-    public boolean getPythonLevelTwo(){
-        return pythonLevelTwo;
-    }
-
-    public void setPythonLevelTwo(boolean pythonLevelTwo){
-        this.pythonLevelTwo = pythonLevelTwo;
-    }
-
-    public boolean getPythonLevelThree(){
-        return pythonLevelThree;
-    }
-
-    public void setPythonLevelThree(boolean pythonLevelThree){
-        this.pythonLevelThree = pythonLevelThree;
-    }
-
-    public boolean getCLevelOne(){
-        return cLevelOne;
-    }
-
-    public void setCLevelOne(boolean cLevelOne){
-        this.cLevelOne = cLevelOne;
-    }
-
-    public boolean getCLevelTwo(){
-        return cLevelTwo;
-    }
-
-    public void setCLevelTwo(boolean cLevelTwo){
-        this.cLevelTwo = cLevelTwo;
-    }
-
-    public boolean getCLevelThree(){
-        return cLevelThree;
-    }
-
-    public void setCLevelThree(boolean cLevelThree){
-        this.cLevelThree = cLevelThree;
-    }
-
-    public Progress(){ }
-
-    public Progress(Integer id, boolean javaLevelOne, boolean javaLevelTwo, boolean javaLevelThree,
-                    boolean pythonLevelOne, boolean pythonLevelTwo, boolean pythonLevelThree,
-                    boolean cLevelOne, boolean cLevelTwo, boolean cLevelThree){
-
+    public Progress(Integer id){
         this.id = id;
-        this.javaLevelOne = javaLevelOne;
-        this.javaLevelTwo = javaLevelTwo;
-        this.javaLevelThree = javaLevelThree;
-        this.pythonLevelOne = pythonLevelOne;
-        this.pythonLevelTwo = pythonLevelTwo;
-        this.pythonLevelThree = pythonLevelThree;
-        this.cLevelOne = cLevelOne;
-        this.cLevelTwo = cLevelTwo;
-        this.cLevelThree = cLevelThree;
+        this.levels = new ArrayList<Boolean>(Arrays.asList(new Boolean[150]));
+        Collections.fill(levels, true);
     }
 
 }
